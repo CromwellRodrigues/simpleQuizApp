@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="style.css" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Quiz App With API</title>
+	</head>
+	<body>
+		<div class="wrapper">
+			<header class="quiz-header">
+				<h1>🚀Quiz Academy✨</h1>
+			</header>
+
+			<main class="quiz-main">
+				<div class="screen question-screen show">
+					<form class="quiz-question screen-grid">
+						<div class="screen-body">
+							<fieldset>
+								<legend id="legend-question">Capital of France</legend>
+
+								<div>
+									<label id="label-answer-1" for="answer-1"> answer-1 </label>
+									<input
+										name="answer"
+										type="radio"
+										id="answer-1"
+										value="answer=1"
+										class="choice-text"
+										data-number="1"
+									/>
+								</div>
+
+								<div>
+									<label id="label-answer-2" for="answer-2">answer-2 </label>
+									<input
+										name="answer"
+										type="radio"
+										id="answer-2"
+										value="answer-2"
+										class="choice-text"
+										data-number="2"
+									/>
+								</div>
+
+								<div>
+									<label id="label-answer-3" for="answer-3">answer-3 </label>
+									<input
+										name="answer"
+										type="radio"
+										id="answer-3"
+										value="answer-3"
+										class="choice-text"
+										data-number="3"
+									/>
+								</div>
+
+								<div>
+									<label id="label-answer-4" for="answer-4">answer-4</label>
+									<input
+										name="answer"
+										type="radio"
+										id="answer-4"
+										value="answer-4"
+										class="choice-text"
+										data-number="4"
+									/>
+								</div>
+							</fieldset>
+						</div>
+						<button type="submit" class="base-button blue-button">
+							Submit Answer
+						</button>
+					</form>
+				</div>
+
+				<div class="screen pass-screen hide">
+					<div class="screen-grid">
+						<div class="screen-body">
+							<h1>✅ Correct ✅</h1>
+
+							<h2>
+								Congratulations ! <br />You've successfully answered the
+								question.
+
+								<div id="got-it-right"></div>
+
+								<div id="score"></div>
+							</h2>
+						</div>
+
+						<button
+							type="submit"
+							class="base-button blue-button"
+							id="next-question-pass"
+						>
+							Next Question
+						</button>
+					</div>
+				</div>
+
+				<div class="screen fail-screen hide">
+					<div class="screen-grid">
+						<div class="screen-body">
+							<h1>❌ Incorrect ❌</h1>
+
+							<h2>
+								Looks like you got that one wrong !<br />
+								Here's the correct answer: <br />
+
+								<div id="legend-question"></div>
+
+								<br />
+								<div id="correct-answer-for-you"></div>
+
+								<div id="score"></div>
+							</h2>
+						</div>
+
+						<button
+							type="submit"
+							class="base-button blue-button"
+							id="next-question-fail"
+						>
+							Next Question
+						</button>
+					</div>
+				</div>
+			</main>
+		</div>
+		<!--  -->
+		<!-- <script src="script1.js"></script> -->
+		<script src="script.js"></script>
+	</body>
+</html>
