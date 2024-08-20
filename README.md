@@ -1,4 +1,4 @@
-A responsive front-end interface for the quiz application. 
+#A responsive front-end interface for the quiz application. 
 
 A basic version that shows a multiple-choice question and lets user pick an answer 
 
@@ -8,7 +8,7 @@ Scale the project (To do)
 An advanced version with a progress tracker, and a score tracker, a lives tracker, a timer and an end of quiz summary.
 
 
-Skills acquired :
+##Skills acquired :
 Basic / Intermediate HTML and CSS.
 Semantic HTML to structure the page.
 CSS Grid for page level layout.
@@ -16,7 +16,7 @@ CSS Flexbox for lower level layout or alignment.
 Other CSS for general visual styling.
 
 
-Basic / Intermediate JS
+##Basic / Intermediate JS
 Manipulate the DOM using JavaScript
 Read/write values from a DOM Node, like a the text inside a div.
 Add / Remove classes from a DOM Node.
@@ -30,5 +30,5 @@ Be able to write async / await code to successfully read the data from the fetch
 Be able to do basic error handling (try/catch) for async code.
 
 
-Data structures
+##Data structures
 Understand Arrays and Object and how to interact with them. This means being able to create them, add data to them and read data from them.
