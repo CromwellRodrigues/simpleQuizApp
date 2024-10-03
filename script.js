@@ -11,7 +11,7 @@ let quizData = [];
 let currentQuestionIndex = 0;
 let correctAnswer = "";
 let score = 0;
-const currentQuestion = ""
+let currentQuestionText = '';
 
 
 // FUNCTION TO START THE QUIZ WITH API DATA
@@ -47,16 +47,24 @@ function updateQuiz() {
 		return;
 	}
 
+	// Update the question number
+    document.getElementById("question-number").textContent = `Question ${currentQuestionIndex + 1} of ${quizData.length}`;
+
 	// SETTING CURRENT QUESTION NUMBER FOR QUIZ, IE. 1
 	const currentQuestion = quizData[currentQuestionIndex];
 
+
+
 	// GETTING THE QUESTION FROM API
-	question = currentQuestion.question;
+	const question = decodeHtmlEntities(currentQuestion.question);
+	currentQuestionText = question;
+
+
 
 	// GETTING THE ANSWERS FROM API - BOTH CORRECT AND INCORRECT
 	// correctAnswer is declared in global variable
-	correctAnswer = currentQuestion.correct_answer;
-	let incorrectAnswers = currentQuestion.incorrect_answers;
+	correctAnswer = decodeHtmlEntities(currentQuestion.correct_answer);
+	let incorrectAnswers = currentQuestion.incorrect_answers.map(decodeHtmlEntities); 
 	console.log(`correct answer first : ${correctAnswer}, ${incorrectAnswers}`);
 
 	// GETTING BOTH THE SETS OF ANSWERS IN ONE ARRAY
@@ -79,11 +87,25 @@ function updateQuiz() {
 		console.log(answer, index);
 		console.log(labelId, inputId);
 
-		const label = (document.getElementById(labelId).textContent = answer);
-		const input = (document.getElementById(inputId).value = answer);
+	
+		const label = document.getElementById(labelId);
+        const input = document.getElementById(inputId);
+
+        label.textContent = answer;
+        input.value = answer;
+
+        // Ensure the input is inside the label
+        label.insertBefore(input, label.firstChild);
+
 	});
 }
 
+// a function to decode HTML entities:
+function decodeHtmlEntities(text) {
+    const tempElement = document.createElement("div");
+    tempElement.innerHTML = text;
+    return tempElement.textContent || tempElement.innerText || "";
+}
 
 // function to shuffle the incorrectAnswer choices and correctAnswer using Fisher-Yates (Knuth) shuffle
 
@@ -121,13 +143,13 @@ function handleSubmit(event) {
 		score++;
 		updateScore();
 		let gotItRight = document.getElementById('got-it-right');
-		gotItRight.innerHTML += `<p>${question} <br> ${correctAnswer}</p>`;
+		gotItRight.innerHTML = `<p style= 'color:green;'>${currentQuestionText} <br> ${correctAnswer}</p>`;
 		// nextQuestion();
 	} else {
 		fail();
 		updateScore();
 		let correctAnswerForYou = document.getElementById("correct-answer-for-you");
-		correctAnswerForYou.innerHTML += `<p>${question} <br> ${correctAnswer}</p>`;
+		correctAnswerForYou.innerHTML = `<p style= 'color:red'>${currentQuestionText} <br> ${correctAnswer}</p>`;
 		// nextQuestion();
 	}
 }
@@ -205,7 +227,10 @@ document
 
 quizForm.addEventListener("submit", handleSubmit);
 
-document.addEventListener("DOMContentLoaded", fetchQuizData);
+document.addEventListener("DOMContentLoaded", () => {
+
+	fetchQuizData()
+});
 
 // issues I got into while running this file
 // 1. GET https://opentdb.com/api.php?amount=10&difficulty=easy&type=multiple 429 (Too Many Requests)
